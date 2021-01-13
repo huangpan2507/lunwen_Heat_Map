@@ -235,16 +235,16 @@ if __name__ == '__main__':
 
     args = get_args()
     str_pre = args.image_path.split(".")[0]
-    _,_1,_2,str_cam, str_num,str_name = str(str_pre).split("/",5)
+    _,_1,_2,str_cam, str_num,str_name = str(str_pre).split("/",5)     #将给定路径以／符号为分割副进行拆分．
     print("...: ", _,_1,_2, str_cam, str_num,str_name)
-    cam_path = _ +"/"+ _1+"/" +_2+"/"+ str_cam+"/"
-    print("cam_path: ",cam_path)     #/mnt/sysu/cam2/
-    files = os.listdir(cam_path)
+    cam_path = _ +"/"+ _1+"/" +_2+"/"+ str_cam+"/"                    #形成　类似/mnt/sysu/cam2/　的文件路径
+    print("cam_path: ",cam_path)     #/mnt/sysu/cam2/　　　　　　　
+    files = os.listdir(cam_path)                                      #列出所有的文件
     i = 0
-    print("files len :", len(files))
+    print("files len :", len(files))                                  # 统计类似/mnt/sysu/cam2/　下总共有多少文件夹
     for _ in range(len(files)):
-        i+=1
-        pic_path = cam_path+str(i).zfill(4)               #zfill(4)前面补０成四位数
+        i+=1                                                          # 因为原数据集路径为/mnt/SYSU-MM01/cam5/0002/0004.jpg
+        pic_path = cam_path+str(i).zfill(4)                           #　这一步是为了形成0002这样的文件夹，若不存在则加１，zfill(4)前面补０成四位数
         print("pic_path: ", pic_path)
 
         while(os.path.exists(pic_path)==False):
@@ -257,7 +257,7 @@ if __name__ == '__main__':
 
             path = pic_path+"/"+str(j+1).zfill(4)+".jpg"
             print("path: ",path)
-            while (os.path.exists(path) == False):
+            while (os.path.exists(path) == False):                 #这一步是为了形成0002.jpg这样的图片，若不存在则加１，zfill(4)前面补０成四位数
                 j += 1
                 path = pic_path+"/"+str(j).zfill(4)+".jpg"
             #path = path.strip()
@@ -292,9 +292,9 @@ if __name__ == '__main__':
             _, _,_,result_cam,result_num,result_name = str(result_pre).split('/',5)
             out_path = './pic/'+str(result_cam)+'/'+str(result_num)+'/'+str(result_name)
 
-            os.makedirs(out_path)
+            os.makedirs(out_path)                                                           # 新建与原数据集一样的目录级．
             #print("hhh: ",os.makedirs(out_path))
-            cv2.imwrite(out_path+'.jpg', cam)
+            cv2.imwrite(out_path+'.jpg', cam)                                               # 生成对应目录下对应文件名的热力图
             #cv2.imwrite("./pic/"+str(result_cam)+"/"+str(result_num)+"/"+str(result_name)+".jpg", gb)
             #cv2.imwrite('./pic/result_num/result_name.jpg.jpg', cam_gb)
 
