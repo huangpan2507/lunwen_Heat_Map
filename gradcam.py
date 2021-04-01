@@ -290,7 +290,7 @@ if __name__ == '__main__':
             gb = deprocess_image(gb)
             result_pre = path.split('.')[0]
             _, _,_,result_cam,result_num,result_name = str(result_pre).split('/',5)
-            out_path = './pic/'+str(result_cam)+'/'+str(result_num)+'/'+str(result_name)
+            out_path = './pic/'+str(result_cam)+'/'+str(result_num)+'/'+str(result_name)    # 在当前目录下新建pic文件夹，再该文件夹下新建与数据集相同的文件目录
 
             os.makedirs(out_path)                                                           # 新建与原数据集一样的目录级．
             #print("hhh: ",os.makedirs(out_path))
